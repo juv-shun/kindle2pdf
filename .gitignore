@@ -11,3 +11,6 @@ wheels/
 
 # Kindle2Image
 images
+
+# 生成されたPDFファイル
+pdf/
