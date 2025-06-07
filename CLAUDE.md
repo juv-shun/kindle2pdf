@@ -14,14 +14,17 @@ kindle2pdfは、Kindle アプリからスクリーンショットを自動取得
 
 ## 開発コマンド
 
-- 依存関係のインストール：`uv sync`
-- プログラム実行：`uv run python kindle2images.py`
-- PDF変換実行：`uv run python images2pdf.py`
-- Linter/Formatter：`uv run ruff check .` および `uv run ruff format .`
+- 依存関係のインストール：`make install` または `uv sync`
+- **Kindle2PDF実行（推奨）：`make` または `make kindle2pdf`** - スクリーンショット取得からPDF変換まで連続実行
+- スクリーンショット取得のみ：`make images` または `uv run python kindle2images.py`
+- PDF変換のみ：`make pdf` または `uv run python images2pdf.py`
+- Linter/Formatter：`make check` または `uv run ruff check . && uv run ruff format .`
+- クリーンアップ：`make clean`
 
 ## アーキテクチャ
 
 ### 構成ファイル
+- `Makefile`：ビルドスクリプト（連続実行、個別実行、クリーンアップ等）
 - `kindle2images.py`：スクリーンショット取得プログラム
 - `images2pdf.py`：PNG画像をPDFに変換するプログラム
 - `config.json`：設定ファイル（スクリーンショット範囲、Kindleアプリ名、ページめくり設定等）
