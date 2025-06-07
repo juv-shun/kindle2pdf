@@ -12,11 +12,11 @@ def get_png_files(images_dir: Path) -> list[Path]:
     return sorted(png_files)
 
 
-def convert_images_to_pdf(png_files: list[Path], output_path: Path) -> None:
+def convert_images_to_pdf(png_files: list[Path], output_path: Path) -> bool:
     """PNGファイルリストを1つのPDFに変換"""
     if not png_files:
         print("変換するPNGファイルが見つかりませんでした")
-        return
+        return False
 
     images = []
 
@@ -34,7 +34,7 @@ def convert_images_to_pdf(png_files: list[Path], output_path: Path) -> None:
 
     if not images:
         print("有効なPNGファイルが見つかりませんでした")
-        return
+        return False
 
     try:
         # 最初の画像をベースにして、残りの画像をPDFに追加
@@ -46,8 +46,26 @@ def convert_images_to_pdf(png_files: list[Path], output_path: Path) -> None:
         )
         print(f"PDF作成完了: {output_path}")
         print(f"変換したページ数: {len(images)}")
+        return True
     except Exception as e:
         print(f"PDF作成エラー: {e}")
+        return False
+
+
+def cleanup_png_files(png_files: list[Path]) -> None:
+    """PNGファイルを削除"""
+    print("PNGファイルを削除中...")
+    deleted_count = 0
+
+    for png_file in png_files:
+        try:
+            png_file.unlink()
+            deleted_count += 1
+            print(f"削除完了: {png_file.name}")
+        except Exception as e:
+            print(f"削除エラー: {png_file.name} - {e}")
+
+    print(f"削除したファイル数: {deleted_count}/{len(png_files)}")
 
 
 def main() -> None:
@@ -71,7 +89,14 @@ def main() -> None:
         return
 
     print(f"見つかったPNGファイル数: {len(png_files)}")
-    convert_images_to_pdf(png_files, output_path)
+
+    # PDF変換を実行
+    if convert_images_to_pdf(png_files, output_path):
+        # PDF作成が成功した場合、PNGファイルを削除
+        cleanup_png_files(png_files)
+        print("処理完了: PDFファイルを作成し、元のPNGファイルを削除しました")
+    else:
+        print("PDF作成に失敗しました。PNGファイルは保持されます")
 
 
 if __name__ == "__main__":

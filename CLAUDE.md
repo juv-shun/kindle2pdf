@@ -42,6 +42,7 @@ kindle2pdfは、Kindle アプリからスクリーンショットを自動取得
 2. 各画像をRGB形式に変換（PDF互換性のため）
 3. 全画像を1つのPDFファイルに結合
 4. `pdf/kindle_book.pdf`として出力
+5. PDF作成成功時、元のPNGファイルを自動削除（失敗時は保持）
 
 ### 設定可能項目
 - `screenshot_region`：スクリーンショット範囲（x, y, width, height）

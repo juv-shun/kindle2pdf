@@ -66,9 +66,11 @@ uv run python images2pdf.py
 
 `images/`ディレクトリ内のPNG画像が`pdf/kindle_book.pdf`として結合されます。
 
+**注意**: PDF作成が正常に完了すると、元のPNGファイルは自動的に削除されます。PDF作成に失敗した場合、PNGファイルは保持されます。
+
 ## 出力ファイル
 
-- `images/`: スクリーンショット画像（PNG形式）
+- `images/`: スクリーンショット画像（PNG形式）※PDF作成後は自動削除
 - `pdf/kindle_book.pdf`: 結合されたPDFファイル
 
 ## 設定項目
