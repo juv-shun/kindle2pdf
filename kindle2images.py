@@ -102,7 +102,7 @@ def capture_screenshots(config: dict, images_dir: Path) -> None:
     last_image_hash = None  # ページ変化検出のため
     page_count = 1
 
-    for _ in range(15):
+    while True:
         if SHUTDOWN_FLAG:
             print("終了要求によりスクリーンショットの取得を停止します。")
             break
