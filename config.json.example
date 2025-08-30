@@ -1,7 +1,7 @@
 {
-  "screenshot_region": [70, 70, 1850, 1000],
+  "screenshot_region": [70, 70, 1600, 1000],
   "kindle_app_name": "Amazon Kindle",
   "page_turn_delay": 0.8,
   "activation_delay": 3,
-  "page_turn_direction": "left"
+  "page_turn_direction": "right"
 }
