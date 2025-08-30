@@ -14,3 +14,6 @@ images
 
 # 生成されたPDFファイル
 pdf/
+
+# 設定ファイル
+config.json
