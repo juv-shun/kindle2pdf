@@ -1,23 +1,23 @@
 # kindle2pdf
 
-Kindleアプリからスクリーンショットを自動取得してPDFファイルを生成するPythonツールです。
+Kindle アプリからスクリーンショットを自動取得して PDF ファイルを生成する Python ツールです。
 
 ## 概要
 
-kindle2pdfは、Kindleアプリのページを自動的にスクリーンショット撮影し、それらの画像を1つのPDFファイルに結合するツールです。pyautoguiを使用してページめくり操作を自動化し、Pillowを使って画像処理とPDF生成を行います。
+kindle2pdf は、Kindle アプリのページを自動的にスクリーンショット撮影し、それらの画像を 1 つの PDF ファイルに結合するツールです。pyautogui を使用してページめくり操作を自動化し、Pillow を使って画像処理と PDF 生成を行います。
 
 ## 主な機能
 
-- Kindleアプリの自動ページめくり
+- Kindle アプリの自動ページめくり
 - 連続スクリーンショット取得
-- PNG画像の自動PDF変換
+- PNG 画像の自動 PDF 変換
 - 設定可能なスクリーンショット範囲とタイミング
 
 ## 必要な環境
 
-- Python 3.13以上
-- macOS（osascriptを使用）
-- Amazon Kindleアプリ
+- Python 3.13 以上
+- macOS（osascript を使用）
+- Amazon Kindle アプリ
 
 ## インストール
 
@@ -52,36 +52,36 @@ uv sync
 uv run python kindle2images.py
 ```
 
-1. Kindleアプリが自動的にアクティブ化されます
-2. 読み始めたいページにKindleを配置してください
-3. Kindleをフルスクリーンモードにしてください
-4. スクリーンショット取得が自動で開始されます
-5. 終了する場合は`Ctrl+C`を押してください
+1. Kindle アプリが自動的にアクティブ化されます
+2. 読み始めたいページに Kindle を配置してください。
+   - フルスクリーンは解除した状態で始めてください。
+3. 自動的に、フルスクリーンになり、スクリーンショット取得が自動で開始されます
+4. 終了する場合は`Ctrl+C`を押してください
 
-### 3. PDF変換
+### 3. PDF 変換
 
 ```bash
 uv run python images2pdf.py
 ```
 
-`images/`ディレクトリ内のPNG画像が`pdf/kindle_book.pdf`として結合されます。
+`images/`ディレクトリ内の PNG 画像が`pdf/kindle_book.pdf`として結合されます。
 
-**注意**: PDF作成が正常に完了すると、元のPNGファイルは自動的に削除されます。PDF作成に失敗した場合、PNGファイルは保持されます。
+**注意**: PDF 作成が正常に完了すると、元の PNG ファイルは自動的に削除されます。PDF 作成に失敗した場合、PNG ファイルは保持されます。
 
 ## 出力ファイル
 
-- `images/`: スクリーンショット画像（PNG形式）※PDF作成後は自動削除
-- `pdf/kindle_book.pdf`: 結合されたPDFファイル
+- `images/`: スクリーンショット画像（PNG 形式）※PDF 作成後は自動削除
+- `pdf/kindle_book.pdf`: 結合された PDF ファイル
 
 ## 設定項目
 
-| 項目 | 説明 | デフォルト値 |
-|------|------|-------------|
-| `screenshot_region` | スクリーンショット範囲 [x, y, width, height] | [70, 70, 1850, 1000] |
-| `kindle_app_name` | Kindleアプリケーション名 | "Amazon Kindle" |
-| `page_turn_delay` | ページめくり間隔（秒） | 0.8 |
-| `activation_delay` | アプリ切り替え待機時間（秒） | 3 |
-| `page_turn_direction` | ページめくり方向 | "left" |
+| 項目                  | 説明                                         | デフォルト値         |
+| --------------------- | -------------------------------------------- | -------------------- |
+| `screenshot_region`   | スクリーンショット範囲 [x, y, width, height] | [70, 70, 1850, 1000] |
+| `kindle_app_name`     | Kindle アプリケーション名                    | "Amazon Kindle"      |
+| `page_turn_delay`     | ページめくり間隔（秒）                       | 0.8                  |
+| `activation_delay`    | アプリ切り替え待機時間（秒）                 | 3                    |
+| `page_turn_direction` | ページめくり方向                             | "left"               |
 
 ## 開発
 
@@ -93,7 +93,6 @@ uv run ruff format .
 
 ## 注意事項
 
-- macOS専用ツールです
-- Kindleアプリが起動している必要があります
+- macOS 専用ツールです
 - スクリーンショット範囲は環境に応じて調整が必要な場合があります
 - 著作権法を遵守してご利用ください
