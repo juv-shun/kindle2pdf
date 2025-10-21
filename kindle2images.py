@@ -19,7 +19,7 @@ def main() -> None:
     time.sleep(2)
 
     # スクリーンショット開始準備
-    setup_screenshot()
+    setup_screenshot(config)
     time.sleep(config["activation_delay"])
 
     # 終了監視スレッドを開始
@@ -53,9 +53,9 @@ def load_config() -> dict:
         return json.load(f)
 
 
-def setup_screenshot() -> None:
-    """スクリーンショット開始位置の設定を促すメッセージを表示し、エンターキー入力後にKindleを最大化"""
-    message = "スクリーンショット開始位置にページ位置を設定したら、ターミナル画面に戻ってEnterキーを押してください。"
+def setup_screenshot(config: dict) -> None:
+    """スクリーンショット開始位置の設定を促すメッセージを表示"""
+    message = "Kindleアプリをフルスクリーン化し、スクリーンショット開始位置にページを設定したら、ターミナル画面に戻ってEnterキーを押してください。"
     try:
         subprocess.run(["osascript", "-e", f'display notification "{message}" with title "Kindle2Image"'], check=False)
     except subprocess.SubprocessError:
@@ -65,19 +65,11 @@ def setup_screenshot() -> None:
     print(f"📌 {message}")
     input("準備ができたらEnterキーを押してください...")
 
-    # Kindleをフルスクリーン化
+    # Kindleアプリに戻る
     try:
-        applescript_command = """
-        tell application "System Events"
-            tell process "Amazon Kindle"
-                set frontmost to true
-                keystroke "f" using {command down, control down}
-            end tell
-        end tell
-        """
-        subprocess.run(["osascript", "-e", applescript_command], check=False)
+        subprocess.run(["osascript", "-e", f'tell application "{config["kindle_app_name"]}" to activate'], check=False)
     except subprocess.SubprocessError:
-        print("エラー: Kindle のフルスクリーン化に失敗しました。")
+        print("エラー: Kindleアプリのアクティブ化に失敗しました。")
 
 
 def monitor_exit() -> None:
